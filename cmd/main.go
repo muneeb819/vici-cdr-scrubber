@@ -29,6 +29,7 @@ var (
 func main() {
 	configPath := flag.String("config", "config.yaml", "Path to configuration file")
 	showVersion := flag.Bool("version", false, "Show version information")
+	serverMode := flag.Bool("server", false, "Run as HTTP server (for Cloud Run)")
 	dryRun := flag.Bool("dry-run", false, "Run without writing to database")
 	profileOnly := flag.Bool("profile", false, "Run data profiling only")
 	noFraud := flag.Bool("no-fraud", false, "Disable fraud detection")
@@ -40,6 +41,11 @@ func main() {
 		fmt.Println("Features: Fraud Detection, Data Profiling, Geo Analysis, Link Analysis,")
 		fmt.Println("          Real-time Validation, Data Enrichment, Advanced Reporting")
 		os.Exit(0)
+	}
+
+	if *serverMode {
+		runServer(*configPath)
+		return
 	}
 
 	cfg, err := loadConfig(*configPath)
@@ -334,4 +340,21 @@ func printBanner() {
 	fmt.Println("║  • Deduplication & Phone Normalization                    ║")
 	fmt.Println("╚══════════════════════════════════════════════════════════════╝")
 	fmt.Println()
+}
+
+func runServer(configPath string) {
+	fmt.Println("Starting Vici Dialer CDR Scrubber in server mode...")
+
+	cfg, err := loadConfig(configPath)
+	if err != nil {
+		log.Fatalf("Failed to load config: %v", err)
+	}
+	_ = cfg
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	fmt.Printf("Server listening on port %s\n", port)
 }

@@ -1,0 +1,12 @@
+.git
+.gitignore
+README.md
+LICENSE
+*.md
+.vscode
+.idea
+output/
+logs/
+*.exe
+*.test
+*.out
