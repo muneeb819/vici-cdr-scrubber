@@ -1,0 +1,74 @@
+database:
+  host: localhost
+  port: 5432
+  user: vicidial
+  password: ""
+  dbname: vicidial
+  sslmode: disable
+  max_open_conns: 10
+  max_idle_conns: 5
+  conn_max_lifetime: 300
+
+scrubber:
+  batch_size: 1000
+  max_retries: 3
+  deduplication: true
+  normalize_phones: true
+  remove_internal: true
+  min_duration: 0
+  max_duration: 86400
+  exclude_statuses:
+    - "DNC"
+    - "XDROP"
+  include_campaigns: []
+  exclude_campaigns: []
+
+fraud:
+  enabled: true
+  high_volume_threshold: 100
+  short_call_threshold: 5
+  short_call_max_count: 10
+  night_call_start_hour: 22
+  night_call_end_hour: 6
+  geo_velocity_kmh: 500
+  simultaneous_call_window: 30
+  frequent_dialer_count: 50
+  anomaly_score_threshold: 0.6
+
+validation:
+  strict_mode: false
+  phone_regex: "^[0-9+\\-\\s()]{7,20}$"
+  max_duration: 86400
+  min_duration: 0
+  valid_statuses:
+    - "ANSWERED"
+    - "NO ANSWER"
+    - "BUSY"
+    - "FAILED"
+    - "DALED"
+    - "CALLBK"
+  valid_campaigns: []
+
+enrichment:
+  enabled: true
+  carrier_lookup: true
+  timezone_lookup: true
+  geo_lookup: false
+
+output:
+  format: csv
+  directory: ./output
+  filename_prefix: cdr_scrubbed
+  include_headers: true
+
+logging:
+  level: info
+  file: ./logs/scrubber.log
+  max_size: 100
+  max_backups: 3
+  compress: true
+
+scheduler:
+  enabled: false
+  interval_seconds: 3600
+  max_retries: 3
