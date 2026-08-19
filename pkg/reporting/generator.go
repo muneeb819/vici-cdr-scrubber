@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/vici-cdr-scrubber/internal/models"
+	"github.com/vici-cdr-scrubber/pkg/models"
 )
 
 // ReportGenerator generates various report formats

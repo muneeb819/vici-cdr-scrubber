@@ -8,7 +8,7 @@ import (
 
 	_ "github.com/lib/pq"
 
-	"github.com/vici-cdr-scrubber/internal/models"
+	"github.com/vici-cdr-scrubber/pkg/models"
 )
 
 // PostgresDB wraps the database connection

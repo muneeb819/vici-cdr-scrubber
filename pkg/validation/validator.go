@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vici-cdr-scrubber/internal/models"
+	"github.com/vici-cdr-scrubber/pkg/models"
 )
 
 // Validator performs real-time validation on CDR records

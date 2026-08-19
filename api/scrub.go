@@ -4,11 +4,11 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/vici-cdr-scrubber/internal/fraud"
-	"github.com/vici-cdr-scrubber/internal/models"
-	"github.com/vici-cdr-scrubber/internal/scrubber"
-	"github.com/vici-cdr-scrubber/internal/enrichment"
-	"github.com/vici-cdr-scrubber/internal/validation"
+	"github.com/vici-cdr-scrubber/pkg/fraud"
+	"github.com/vici-cdr-scrubber/pkg/models"
+	"github.com/vici-cdr-scrubber/pkg/scrubber"
+	"github.com/vici-cdr-scrubber/pkg/enrichment"
+	"github.com/vici-cdr-scrubber/pkg/validation"
 )
 
 type ScrubRequest struct {

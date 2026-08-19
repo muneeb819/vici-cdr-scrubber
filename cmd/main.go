@@ -10,14 +10,14 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/vici-cdr-scrubber/internal/database"
-	"github.com/vici-cdr-scrubber/internal/enrichment"
-	"github.com/vici-cdr-scrubber/internal/fraud"
-	"github.com/vici-cdr-scrubber/internal/models"
-	"github.com/vici-cdr-scrubber/internal/profiler"
-	"github.com/vici-cdr-scrubber/internal/reporting"
-	"github.com/vici-cdr-scrubber/internal/scrubber"
-	"github.com/vici-cdr-scrubber/internal/validation"
+	"github.com/vici-cdr-scrubber/pkg/database"
+	"github.com/vici-cdr-scrubber/pkg/enrichment"
+	"github.com/vici-cdr-scrubber/pkg/fraud"
+	"github.com/vici-cdr-scrubber/pkg/models"
+	"github.com/vici-cdr-scrubber/pkg/profiler"
+	"github.com/vici-cdr-scrubber/pkg/reporting"
+	"github.com/vici-cdr-scrubber/pkg/scrubber"
+	"github.com/vici-cdr-scrubber/pkg/validation"
 	"gopkg.in/yaml.v3"
 )
 

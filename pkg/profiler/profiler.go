@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vici-cdr-scrubber/internal/models"
+	"github.com/vici-cdr-scrubber/pkg/models"
 )
 
 // DataProfiler analyzes CDR data quality and patterns

@@ -5,7 +5,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/vici-cdr-scrubber/internal/models"
+	"github.com/vici-cdr-scrubber/pkg/models"
 )
 
 // Enricher enriches CDR data with additional information

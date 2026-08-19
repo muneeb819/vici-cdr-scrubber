@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/vici-cdr-scrubber/internal/models"
-	"github.com/vici-cdr-scrubber/internal/validation"
+	"github.com/vici-cdr-scrubber/pkg/models"
+	"github.com/vici-cdr-scrubber/pkg/validation"
 )
 
 type ValidateResponse struct {

@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/vici-cdr-scrubber/internal/models"
+	"github.com/vici-cdr-scrubber/pkg/models"
 )
 
 // Scrubber processes and cleans CDR records
