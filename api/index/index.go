@@ -1,4 +1,4 @@
-package handler
+package index
 
 import (
 	"encoding/json"
@@ -21,19 +21,15 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		Version:     "2.0.0",
 		Description: "Enterprise-grade CDR processing API - Deployed on Vercel",
 		Endpoints: map[string]string{
-			"GET /api/health":   "Health check",
-			"GET /api/version":  "Version info",
-			"POST /api/scrub":   "Scrub CDR data (demo)",
-			"POST /api/profile": "Profile data quality (demo)",
-			"POST /api/validate":"Validate CDR records (demo)",
+			"GET /api/health":    "Health check",
+			"GET /api/version":   "Version info",
+			"POST /api/scrub":    "Scrub CDR data (demo)",
+			"POST /api/profile":  "Profile data quality (demo)",
+			"POST /api/validate": "Validate CDR records (demo)",
 		},
 	}
 
 	json.NewEncoder(w).Encode(response)
-}
-
-func init() {
-	http.HandleFunc("/", Handler)
 }
 
 var _ = time.Now

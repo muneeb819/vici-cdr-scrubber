@@ -1,18 +1,33 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "api/**/*.go",
-      "use": "@vercel/go",
-      "config": {
-        "maxDuration": 30
-      }
-    }
-  ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "src": "/api/index",
+      "dest": "/api/index"
+    },
+    {
+      "src": "/api/health",
+      "dest": "/api/health"
+    },
+    {
+      "src": "/api/version",
+      "dest": "/api/version"
+    },
+    {
+      "src": "/api/scrub",
+      "dest": "/api/scrub"
+    },
+    {
+      "src": "/api/profile",
+      "dest": "/api/profile"
+    },
+    {
+      "src": "/api/validate",
+      "dest": "/api/validate"
+    },
+    {
+      "src": "/",
+      "dest": "/api/index"
     }
   ]
 }

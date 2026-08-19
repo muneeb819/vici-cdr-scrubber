@@ -1,4 +1,4 @@
-package handler
+package profile
 
 import (
 	"encoding/json"
@@ -9,10 +9,10 @@ import (
 )
 
 type ProfileResponse struct {
-	TotalRecords int64              `json:"total_records"`
-	QualityScore float64            `json:"quality_score"`
-	Issues       []profiler.QualityIssue `json:"issues"`
-	Completeness  map[string]float64 `json:"field_completeness"`
+	TotalRecords int64                    `json:"total_records"`
+	QualityScore float64                  `json:"quality_score"`
+	Issues       []profiler.QualityIssue  `json:"issues"`
+	Completeness  map[string]float64       `json:"field_completeness"`
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -66,8 +66,4 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.NewEncoder(w).Encode(response)
-}
-
-func init() {
-	http.HandleFunc("/api/profile", Handler)
 }

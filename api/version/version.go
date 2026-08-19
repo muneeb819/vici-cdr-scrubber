@@ -1,4 +1,4 @@
-package handler
+package version
 
 import (
 	"encoding/json"
@@ -8,11 +8,11 @@ import (
 )
 
 type VersionResponse struct {
-	Version    string `json:"version"`
-	GoVersion  string `json:"go_version"`
-	Platform   string `json:"platform"`
-	BuildTime  string `json:"build_time"`
-	Features   []string `json:"features"`
+	Version   string   `json:"version"`
+	GoVersion string   `json:"go_version"`
+	Platform  string   `json:"platform"`
+	BuildTime string   `json:"build_time"`
+	Features  []string `json:"features"`
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -39,6 +39,4 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 }
 
-func init() {
-	http.HandleFunc("/api/version", Handler)
-}
+var _ = time.Now

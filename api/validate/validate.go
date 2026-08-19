@@ -1,4 +1,4 @@
-package handler
+package validate
 
 import (
 	"encoding/json"
@@ -9,12 +9,12 @@ import (
 )
 
 type ValidateResponse struct {
-	Total         int                    `json:"total"`
-	Valid         int                    `json:"valid"`
-	Invalid       int                    `json:"invalid"`
-	PassRate      float64                `json:"pass_rate"`
-	AvgScore      float64                `json:"avg_score"`
-	Results       []ValidationItem       `json:"results"`
+	Total    int              `json:"total"`
+	Valid    int              `json:"valid"`
+	Invalid  int              `json:"invalid"`
+	PassRate float64          `json:"pass_rate"`
+	AvgScore float64          `json:"avg_score"`
+	Results  []ValidationItem `json:"results"`
 }
 
 type ValidationItem struct {
@@ -107,8 +107,4 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.NewEncoder(w).Encode(response)
-}
-
-func init() {
-	http.HandleFunc("/api/validate", Handler)
 }

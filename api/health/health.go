@@ -1,4 +1,4 @@
-package handler
+package health
 
 import (
 	"encoding/json"
@@ -22,8 +22,4 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.NewEncoder(w).Encode(response)
-}
-
-func init() {
-	http.HandleFunc("/api/health", Handler)
 }

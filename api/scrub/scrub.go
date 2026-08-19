@@ -1,13 +1,13 @@
-package handler
+package scrub
 
 import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/vici-cdr-scrubber/pkg/enrichment"
 	"github.com/vici-cdr-scrubber/pkg/fraud"
 	"github.com/vici-cdr-scrubber/pkg/models"
 	"github.com/vici-cdr-scrubber/pkg/scrubber"
-	"github.com/vici-cdr-scrubber/pkg/enrichment"
 	"github.com/vici-cdr-scrubber/pkg/validation"
 )
 
@@ -27,21 +27,21 @@ type CDRInput struct {
 }
 
 type ScrubResponse struct {
-	Message   string                `json:"message"`
-	Processed int                   `json:"processed"`
-	Results   []ScrubbedResult      `json:"results"`
-	Stats     models.ScrubStats     `json:"stats"`
+	Message   string            `json:"message"`
+	Processed int               `json:"processed"`
+	Results   []ScrubbedResult  `json:"results"`
+	Stats     models.ScrubStats `json:"stats"`
 }
 
 type ScrubbedResult struct {
-	UniqueID         string  `json:"unique_id"`
-	IsValid          bool    `json:"is_valid"`
-	ScrubReason      string  `json:"scrub_reason,omitempty"`
-	FraudScore       float64 `json:"fraud_score"`
-	ValidationScore  float64 `json:"validation_score"`
-	CarrierName      string  `json:"carrier_name,omitempty"`
-	Country          string  `json:"country,omitempty"`
-	NormalizedPhone  string  `json:"normalized_phone,omitempty"`
+	UniqueID        string  `json:"unique_id"`
+	IsValid         bool    `json:"is_valid"`
+	ScrubReason     string  `json:"scrub_reason,omitempty"`
+	FraudScore      float64 `json:"fraud_score"`
+	ValidationScore float64 `json:"validation_score"`
+	CarrierName     string  `json:"carrier_name,omitempty"`
+	Country         string  `json:"country,omitempty"`
+	NormalizedPhone string  `json:"normalized_phone,omitempty"`
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -131,8 +131,4 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.NewEncoder(w).Encode(response)
-}
-
-func init() {
-	http.HandleFunc("/api/scrub", Handler)
 }
