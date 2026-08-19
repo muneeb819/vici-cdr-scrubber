@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vici Dialer CDR Scrubber</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="logo">◆</span>
+      <h1>CDR Scrubber</h1>
+      <span class="badge">v2.0</span>
+    </div>
+    <div class="nav-status" id="navStatus">
+      <span class="status-dot"></span>
+      <span>Checking...</span>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="hero">
+      <h2>Vici Dialer CDR Scrubber</h2>
+      <p>Enterprise-grade Call Detail Record processing with fraud detection, data profiling, and real-time validation</p>
+      <div class="feature-tags" id="featureTags"></div>
+    </section>
+
+    <section class="upload-section">
+      <div class="card upload-card">
+        <h3>Upload CDR Data</h3>
+        <p>Upload a CSV file or paste JSON data to begin scrubbing</p>
+        <div class="upload-zone" id="uploadZone">
+          <div class="upload-icon">📁</div>
+          <p>Drag & drop CSV file here</p>
+          <p class="small">or click to browse</p>
+          <input type="file" id="fileInput" accept=".csv,.json" hidden>
+        </div>
+        <div class="divider"><span>or</span></div>
+        <textarea id="jsonInput" placeholder='Paste JSON CDR data here...
+Example:
+{
+  "cdrs": [
+    {
+      "unique_id": "CDR001",
+      "caller_code": "1001",
+      "customer_phone_number": "+12025551234",
+      "phone_code": "1",
+      "campaign_id": "CAMP01",
+      "status": "ANSWERED",
+      "call_duration": 120
+    }
+  ]
+}'></textarea>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="processScrub()">🔍 Scrub Data</button>
+          <button class="btn btn-secondary" onclick="processProfile()">📊 Profile Data</button>
+          <button class="btn btn-secondary" onclick="processValidate()">✅ Validate Data</button>
+          <button class="btn btn-outline" onclick="loadDemo()">⚡ Load Demo Data</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-section" id="statsSection" style="display:none">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value" id="statTotal">0</div>
+          <div class="stat-label">Total Records</div>
+        </div>
+        <div class="stat-card success">
+          <div class="stat-value" id="statValid">0</div>
+          <div class="stat-label">Valid Records</div>
+        </div>
+        <div class="stat-card danger">
+          <div class="stat-value" id="statInvalid">0</div>
+          <div class="stat-label">Invalid Records</div>
+        </div>
+        <div class="stat-card warning">
+          <div class="stat-value" id="statFraud">0</div>
+          <div class="stat-label">Fraud Alerts</div>
+        </div>
+      </div>
+      <div class="charts-grid">
+        <div class="card">
+          <h4>Validation Results</h4>
+          <canvas id="validationChart"></canvas>
+        </div>
+        <div class="card">
+          <h4>Fraud Score Distribution</h4>
+          <canvas id="fraudChart"></canvas>
+        </div>
+        <div class="card">
+          <h4>Data Quality Score</h4>
+          <div class="quality-gauge" id="qualityGauge">
+            <div class="gauge-value">0%</div>
+            <div class="gauge-label">Quality Score</div>
+          </div>
+        </div>
+        <div class="card">
+          <h4>Issues Found</h4>
+          <div id="issuesList" class="issues-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="results-section" id="resultsSection" style="display:none">
+      <div class="card">
+        <h3>Scrub Results</h3>
+        <div class="results-table-wrap">
+          <table class="results-table" id="resultsTable">
+            <thead>
+              <tr>
+                <th>Unique ID</th>
+                <th>Status</th>
+                <th>Fraud Score</th>
+                <th>Validation</th>
+                <th>Carrier</th>
+                <th>Country</th>
+                <th>Phone</th>
+                <th>Reason</th>
+              </tr>
+            </thead>
+            <tbody id="resultsBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="log-section">
+      <div class="card">
+        <h3>Activity Log</h3>
+        <div class="log-output" id="logOutput">
+          <div class="log-entry info">System ready. Upload CDR data or load demo to begin.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Vici Dialer CDR Scrubber v2.0.0 | Deployed on Vercel | Go Backend</p>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>

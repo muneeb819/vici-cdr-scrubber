@@ -14,7 +14,6 @@
     { "src": "/api/scrub", "dest": "/api/scrub/scrub.go" },
     { "src": "/api/profile", "dest": "/api/profile/profile.go" },
     { "src": "/api/validate", "dest": "/api/validate/validate.go" },
-    { "src": "/api/index", "dest": "/api/index/index.go" },
-    { "src": "/", "dest": "/api/index/index.go" }
+    { "src": "/api/index", "dest": "/api/index/index.go" }
   ]
 }
