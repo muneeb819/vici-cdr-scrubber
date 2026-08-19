@@ -1,35 +1,20 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "api/health/health.go",
-      "use": "@vercel/go",
-      "config": { "maxDuration": 30 }
-    },
-    {
-      "src": "api/version/version.go",
-      "use": "@vercel/go",
-      "config": { "maxDuration": 30 }
-    },
-    {
-      "src": "api/scrub/scrub.go",
-      "use": "@vercel/go",
-      "config": { "maxDuration": 30 }
-    },
-    {
-      "src": "api/profile/profile.go",
-      "use": "@vercel/go",
-      "config": { "maxDuration": 30 }
-    },
-    {
-      "src": "api/validate/validate.go",
-      "use": "@vercel/go",
-      "config": { "maxDuration": 30 }
-    },
-    {
-      "src": "api/index/index.go",
-      "use": "@vercel/go",
-      "config": { "maxDuration": 30 }
-    }
+    { "src": "api/index/index.go", "use": "@vercel/go", "config": { "maxDuration": 30 } },
+    { "src": "api/health/health.go", "use": "@vercel/go", "config": { "maxDuration": 30 } },
+    { "src": "api/version/version.go", "use": "@vercel/go", "config": { "maxDuration": 30 } },
+    { "src": "api/scrub/scrub.go", "use": "@vercel/go", "config": { "maxDuration": 30 } },
+    { "src": "api/profile/profile.go", "use": "@vercel/go", "config": { "maxDuration": 30 } },
+    { "src": "api/validate/validate.go", "use": "@vercel/go", "config": { "maxDuration": 30 } }
+  ],
+  "routes": [
+    { "src": "/api/health", "dest": "/api/health/health.go" },
+    { "src": "/api/version", "dest": "/api/version/version.go" },
+    { "src": "/api/scrub", "dest": "/api/scrub/scrub.go" },
+    { "src": "/api/profile", "dest": "/api/profile/profile.go" },
+    { "src": "/api/validate", "dest": "/api/validate/validate.go" },
+    { "src": "/api/index", "dest": "/api/index/index.go" },
+    { "src": "/", "dest": "/api/index/index.go" }
   ]
 }
