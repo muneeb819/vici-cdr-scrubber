@@ -1,33 +1,5 @@
 {
   "version": 2,
-  "routes": [
-    {
-      "src": "/api/index",
-      "dest": "/api/index"
-    },
-    {
-      "src": "/api/health",
-      "dest": "/api/health"
-    },
-    {
-      "src": "/api/version",
-      "dest": "/api/version"
-    },
-    {
-      "src": "/api/scrub",
-      "dest": "/api/scrub"
-    },
-    {
-      "src": "/api/profile",
-      "dest": "/api/profile"
-    },
-    {
-      "src": "/api/validate",
-      "dest": "/api/validate"
-    },
-    {
-      "src": "/",
-      "dest": "/api/index"
-    }
-  ]
+  "installCommand": "go mod tidy",
+  "buildCommand": "echo 'Go handlers built by Vercel automatically'"
 }
