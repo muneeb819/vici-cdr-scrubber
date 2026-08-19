@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: vici-cdr-scrubber
+    runtime: docker
+    plan: free
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: CONFIG_PATH
+        value: /app/config.yaml
+    healthCheckPath: /health
