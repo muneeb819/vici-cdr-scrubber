@@ -1,6 +1,7 @@
 {
   "version": 2,
   "builds": [
+    { "src": "public/**", "use": "@vercel/static" },
     { "src": "api/index/index.go", "use": "@vercel/go", "config": { "maxDuration": 30 } },
     { "src": "api/health/health.go", "use": "@vercel/go", "config": { "maxDuration": 30 } },
     { "src": "api/version/version.go", "use": "@vercel/go", "config": { "maxDuration": 30 } },
