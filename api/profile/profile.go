@@ -1,4 +1,4 @@
-package profile
+package main
 
 import (
 	"encoding/json"
@@ -9,10 +9,10 @@ import (
 )
 
 type ProfileResponse struct {
-	TotalRecords int64                    `json:"total_records"`
-	QualityScore float64                  `json:"quality_score"`
-	Issues       []profiler.QualityIssue  `json:"issues"`
-	Completeness  map[string]float64       `json:"field_completeness"`
+	TotalRecords int64                   `json:"total_records"`
+	QualityScore float64                 `json:"quality_score"`
+	Issues       []profiler.QualityIssue `json:"issues"`
+	Completeness  map[string]float64      `json:"field_completeness"`
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {

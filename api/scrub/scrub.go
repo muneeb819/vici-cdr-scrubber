@@ -1,4 +1,4 @@
-package scrub
+package main
 
 import (
 	"encoding/json"
