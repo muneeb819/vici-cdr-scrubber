@@ -26,7 +26,7 @@ type ProfileStats struct {
 	UniqueCounts       map[string]int64       `json:"unique_counts"`
 	MinValues          map[string]interface{} `json:"min_values"`
 	MaxValues          map[string]interface{} `json:"max_values"`
-	AvgValues          map[string[float64]    `json:"avg_values"`
+	AvgValues          map[string]map[string]float64 `json:"avg_values"`
 	AnomalyScores      map[string]float64     `json:"anomaly_scores"`
 	QualityScore       float64               `json:"quality_score"`
 	IssuesFound        []QualityIssue        `json:"issues_found"`
@@ -69,7 +69,7 @@ func NewDataProfiler() *DataProfiler {
 			UniqueCounts:       make(map[string]int64),
 			MinValues:          make(map[string]interface{}),
 			MaxValues:          make(map[string]interface{}),
-			AvgValues:          make(map[string[float64]),
+			AvgValues:          make(map[string]map[string]float64),
 			AnomalyScores:      make(map[string]float64),
 			IssuesFound:        []QualityIssue{},
 		},
@@ -374,7 +374,7 @@ func (p *DataProfiler) Reset() {
 		UniqueCounts:       make(map[string]int64),
 		MinValues:          make(map[string]interface{}),
 		MaxValues:          make(map[string]interface{}),
-		AvgValues:          make(map[string]float64),
+		AvgValues:          make(map[string]map[string]float64),
 		AnomalyScores:      make(map[string]float64),
 		IssuesFound:        []QualityIssue{},
 	}

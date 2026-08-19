@@ -26,3 +26,5 @@ config.local.yaml
 # OS
 .DS_Store
 Thumbs.db
+
+.vercel
