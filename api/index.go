@@ -16,7 +16,11 @@ import (
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
-	path := strings.TrimPrefix(r.URL.Path, "/api")
+	path := r.Header.Get("X-Vercel-Original-Path")
+	if path == "" {
+		path = r.URL.Path
+	}
+	path = strings.TrimPrefix(path, "/api")
 	path = strings.TrimPrefix(path, "/")
 	path = strings.TrimSuffix(path, "/")
 
