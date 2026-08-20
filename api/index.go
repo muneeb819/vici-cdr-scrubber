@@ -18,6 +18,9 @@ import (
 func Handler(w http.ResponseWriter, r *http.Request) {
 	path := r.Header.Get("X-Vercel-Original-Path")
 	if path == "" {
+		path = r.URL.Query().Get("ep")
+	}
+	if path == "" {
 		path = r.URL.Path
 	}
 	path = strings.TrimPrefix(path, "/api")

@@ -2,7 +2,10 @@ const API_BASE = '';
 let validationChart = null;
 let fraudChart = null;
 
-function api(path) { return `${API_BASE}/api${path}`; }
+function api(endpoint, method) {
+  if (method === 'GET') return `${API_BASE}/api/index?ep=${endpoint}`;
+  return `${API_BASE}/api/index?ep=${endpoint}`;
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   checkHealth();
@@ -12,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function checkHealth() {
   try {
-    const res = await fetch(api('/health'));
+    const res = await fetch(api('health'));
     if (res.ok) {
       const data = await res.json();
       document.getElementById('navStatus').innerHTML = `<span class="status-dot online"></span><span>Connected (${data.platform})</span>`;
@@ -21,9 +24,8 @@ async function checkHealth() {
     }
   } catch (e) {}
   try {
-    const res = await fetch(api('/index'));
+    const res = await fetch(api('index'));
     if (res.ok) {
-      const data = await res.json();
       document.getElementById('navStatus').innerHTML = `<span class="status-dot online"></span><span>Connected (Vercel)</span>`;
       log('API online', 'success');
     }
@@ -35,8 +37,8 @@ async function checkHealth() {
 
 async function loadFeatures() {
   try {
-    let res = await fetch(api('/version'));
-    if (!res.ok) res = await fetch(api('/index'));
+    let res = await fetch(api('version'));
+    if (!res.ok) res = await fetch(api('index'));
     const data = await res.json();
     if (data.features) {
       const container = document.getElementById('featureTags');
@@ -102,11 +104,8 @@ function getInputData() {
   } catch (e) { log('JSON parse error: ' + e.message, 'error'); return null; }
 }
 
-async function postApi(path, data) {
-  let res = await fetch(api(path), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
-  if (res.status === 404) {
-    res = await fetch(api('/index'), { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Endpoint': path.substring(1) }, body: JSON.stringify(data) });
-  }
+async function postApi(endpoint, data) {
+  const res = await fetch(api(endpoint), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
   return res.json();
 }
 
@@ -115,7 +114,7 @@ async function processScrub() {
   if (!data) return;
   log(`Scrubbing ${data.cdrs.length} records...`, 'info');
   try {
-    const result = await postApi('/scrub', data);
+    const result = await postApi('scrub', data);
     log(`Scrub complete: ${result.processed} processed`, 'success');
     displayScrubResults(result);
   } catch (e) { log('Scrub error: ' + e.message, 'error'); }
@@ -126,7 +125,7 @@ async function processProfile() {
   if (!data) return;
   log(`Profiling ${data.cdrs.length} records...`, 'info');
   try {
-    const result = await postApi('/profile', data);
+    const result = await postApi('profile', data);
     log(`Profile: quality score ${result.quality_score}%`, 'success');
     displayProfileResults(result);
   } catch (e) { log('Profile error: ' + e.message, 'error'); }
@@ -137,7 +136,7 @@ async function processValidate() {
   if (!data) return;
   log(`Validating ${data.cdrs.length} records...`, 'info');
   try {
-    const result = await postApi('/validate', data);
+    const result = await postApi('validate', data);
     log(`Validation: ${result.valid}/${result.total} passed (${result.pass_rate.toFixed(1)}%)`, 'success');
     displayValidateResults(result);
   } catch (e) { log('Validate error: ' + e.message, 'error'); }
