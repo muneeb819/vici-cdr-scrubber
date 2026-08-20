@@ -184,6 +184,9 @@ func (p *DataProfiler) updateNumericStats(field string, value float64) {
 	}
 
 	current := p.stats.AvgValues[field]
+	if current == nil {
+		current = map[string]float64{"sum": 0, "count": 0, "avg": 0}
+	}
 	count := current["count"]
 	current["sum"] += value
 	current["count"] = count + 1
