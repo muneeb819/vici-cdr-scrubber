@@ -9,8 +9,9 @@ COPY go.mod go.sum* ./
 RUN go mod download
 
 COPY . .
+RUN go mod tidy
 
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o /app/server ./cmd
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o /app/server ./cmd/server.go
 
 # Runtime stage
 FROM alpine:latest
